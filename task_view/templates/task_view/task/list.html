@@ -1,0 +1,25 @@
+{% extends "task_view/base.html" %}
+
+{% block title %}My Tasker{% endblock %}
+
+{% block content %}
+
+<h1>My Tasker</h1>
+    {% for task in tasks %}
+<h2>
+    <a href="{{ task.get_absolute_url }}">
+    {{ task.target }}
+    </a>
+</h2>
+
+<p class="date">
+    Published {{ task.created }} by {{ task.author }}
+</p>
+
+{{ task.description|truncatewords:30|linebreaks }}
+
+{% endfor %}
+
+    {% include "pagination.html" with page=tasks %}
+
+{% endblock %}
